@@ -1,1 +1,101 @@
-In this I have completed the task 2 that is ATM Interface of CodSoft Java Programming.
+package ATM_Interface;
+
+import java.sql.SQLOutput;
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class ATM_Interface {
+    public static void main(String[] args) {
+    ATM1 obj = new ATM1();
+    }
+
+}
+class Data{
+    float Balance ;
+}
+class ATM1{
+    float balance;
+    Scanner gk = new Scanner (System.in);
+    HashMap<Integer , Data> map = new HashMap<>();
+    ATM1(){
+        System.out.println("#####################################################################################");
+        System.out.println("Welcome to out ATM");
+        op();
+    }
+    public void op(){
+        System.out.println("Enter Your PIN Code");
+        int pincode = gk.nextInt();
+        if (map.containsKey(pincode) == true){
+            Data obj = map.get(pincode);
+            Menu(obj);
+        }
+        else {
+            System.out.println("*************************************************************************************");
+            System.out.println("Please Create Your Account First");
+            System.out.println("Set Your PinCode");
+            int pin = gk.nextInt();
+            Data obj = new Data();
+            map.put(pin ,obj);
+            Menu(obj);
+        }
+    }
+    public void Menu(Data obj){
+        System.out.println("#####################################################################################");
+        System.out.println("PLEASE ENTER VALID NUMBER");
+        System.out.println("1. CHECK BALANCE");
+        System.out.println("2. DEPOSIT MONEY");
+        System.out.println("3. WITHDRAW MONEY");
+        System.out.println("4. CHECK ANOTHER ACCOUNT");
+        System.out.println("5. EXIT");
+
+        int x = gk.nextInt();
+        if (x==1){
+            check_balance(obj);
+        } else if (x == 2) {
+            deposit(obj);
+        } else if (x ==3 ) {
+            withdraw(obj);
+        } else if (x == 4) {
+            op();
+        }
+        else if(x == 5){
+            System.out.println("Thank You");
+        }
+        else {
+            System.out.println("Please Enter  Valid Number");
+            Menu(obj);
+        }
+
+
+        }
+        public void check_balance(Data obj){
+            System.out.println("#####################################################################################");
+            System.out.println("YOUR BALANCE"+ obj.Balance);
+            System.out.println("#####################################################################################");
+            Menu(obj);
+        }
+        public void deposit(Data obj){
+            System.out.println("#####################################################################################");
+            System.out.println("ENTER YOUR AMOUNT");
+            float a= gk.nextFloat();
+            obj.Balance= obj.Balance+ a;
+            System.out.println("AMOUNT DEPOSITED SUCCESSFULLY");
+            System.out.println("#####################################################################################");
+            Menu(obj);
+        }
+    public void withdraw(Data obj) {
+
+        System.out.println("#####################################################################################");
+        System.out.println("ENTER WITHDRAWAL AMOUNT");
+        float a = gk.nextFloat();
+        if (obj.Balance>=a){
+
+        obj.Balance = obj.Balance - a;
+        System.out.println("AMOUNT WITHDRAW SUCCESSFULLY");}
+        else {
+            System.out.println("Insufficient Balance! Please Deposit The Money");
+            System.out.println("#####################################################################################");
+            Menu(obj);
+        }
+    }
+    }
