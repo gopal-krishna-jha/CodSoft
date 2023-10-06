@@ -1,0 +1,53 @@
+import java.util.*;
+
+public class NumberGuessingGame{
+
+    public static void main(String[] args) {
+
+        Scanner gk = new Scanner (System.in);
+        
+        Random r = new Random();
+       
+        int randomNumber = r.nextInt(100) +1;
+
+        //System.out.println("Random number is : "+ randomNumber); 
+
+        int countNumberOfAttempts = 0;
+
+        while(true){
+        System.out.println("Enter your guess (1 - 100)::");
+        
+        int guessNumber = gk.nextInt();
+
+        countNumberOfAttempts ++;
+
+        if ( guessNumber==randomNumber){
+
+            System.out.println("Great You Win!");
+
+            System.out.println("It Took You " + countNumberOfAttempts+ " Attempts To Find The Exact Number");
+
+             System.out.println("***********************************************************************************");
+             
+             break;
+
+        }
+        else if (randomNumber> guessNumber){
+
+            System.out.println("You Guessed Wrong Number! Better Luck Next Time");
+
+            System.out.println("Hint : The Exact Number Is Greater Than Your Guessed Number ");
+
+             System.out.println("***********************************************************************************");
+        
+            }
+        else {
+            System.out.println("You Guessed Wrong Number! Better Luck Next Time");
+
+             System.out.println("Hint : The Exact Number Is Lower Than Your Guessed Number ");
+
+             System.out.println("***********************************************************************************");
+          }
+       } 
+    }
+  }
